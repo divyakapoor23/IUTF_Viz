@@ -4,11 +4,9 @@ This project explores how hourly rainfall relates to traffic flow in eight citie
 
 ## Run the notebook
 
-Open [Project2.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/Project2.ipynb) and run the notebook from top to bottom. The default source is the public Google Cloud Storage CSV configured in the notebook. It streams the source and retains the selected cities, so no local data-file upload is required.
+Open [Project2.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/Project2.ipynb) and run the notebook from top to bottom. The default source is the public Google Cloud Storage CSV, using the same URL documented in [Project1.ipynb](https://github.com/divyakapoor23/IUTF_Viz/blob/main/Project1.ipynb). The loader streams the CSV and retains the selected cities, so no local data-file upload is required.
 
-Colab will ask you to authorize Google Sheets and Drive access. The notebook creates or reuses a spreadsheet named `IUTF_Viz_Rainfall_Traffic_Analysis_google_cloud` for the default source, publishes the processed analysis tables, and sets viewer access for anyone with the link. The title ends with the selected `DATA_SOURCE` value, keeping tables from different sources separate. Enable the Google Sheets API and Google Drive API if your account's Google Cloud project reports that either API is disabled. The sheet contains the hourly summaries, qualifying rain events, and recovery curves used by the app.
-
-After the analysis and publication complete, run the single `# @title My Web App` cell. It loads the tables from Google Sheets and starts the Dash application through the Colab port proxy. The link is valid while that Colab runtime is active; this is not an always-on Render deployment.
+The analysis tables are built from the CSV and kept in notebook memory. Run the single `# @title My Web App` cell after analysis; it uses those tables directly and starts Dash through the Colab port proxy. Google Sheets authorization and a separate data upload are not required. The app link is valid only while that Colab runtime is active; this is not an always-on Render deployment.
 
 ## Visualizations
 
