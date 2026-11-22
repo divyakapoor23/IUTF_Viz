@@ -28,12 +28,12 @@ NAMES = {city: city.title() for city in CITIES}
 NAMES["luzern"] = "Luzern"
 RAIN_CLASSES = ["Dry", "Light", "Moderate", "Heavy", "Extreme", "Unknown"]
 RAIN_COLORS = {
-    "Dry": "#D55E00",
-    "Light": "#E69F00",
-    "Moderate": "#56B4E9",
-    "Heavy": "#0072B2",
-    "Extreme": "#332288",
-    "Unknown": "#595959",
+    "Dry": "#E4F2FF",
+    "Light": "#BBD7EF",
+    "Moderate": "#81AFD5",
+    "Heavy": "#467FB2",
+    "Extreme": "#124373",
+    "Unknown": "#171717",
 }
 CITY_COLORS = dict(
     zip(CITIES, ["#0072B2", "#D55E00", "#009E73", "#CC79A7",
@@ -119,7 +119,7 @@ def make_coverage_chart(hours: pd.DataFrame) -> go.Figure:
             orientation="h",
             marker={
                 "color": RAIN_COLORS[rain_class],
-                "pattern": {"shape": "/" if rain_class == "Unknown" else ""},
+                "pattern": {"shape": {"Dry": ".", "Unknown": "/"}.get(rain_class, "")},
             },
             hovertemplate="%{y}<br>" + rain_class + ": %{x:,} city-hours<extra></extra>",
         )
@@ -226,6 +226,17 @@ def make_intensity_chart(hours: pd.DataFrame) -> go.Figure:
             ygap=2,
         )
     )
+    for city, rain_class, label in (
+        ("innsbruck", "Dry", "Dry reference"),
+        ("luzern", "Heavy", "Heavy rain"),
+    ):
+        if pd.notna(matrix.loc[city, rain_class]):
+            figure.add_annotation(
+                x=rain_class, y=NAMES[city], text=label, showarrow=True,
+                ax=0, ay=-34, standoff=9, arrowhead=2,
+                arrowcolor="#222222", bgcolor="rgba(255,255,255,.94)",
+                font={"size": 9, "color": "#222222"},
+            )
     figure.update_layout(
         title="Median flow change by hourly rainfall intensity",
         xaxis_title="Hourly rainfall class",

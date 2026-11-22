@@ -27,7 +27,7 @@ want to publish updated analysis results.
 
 1. Open [FinalProjectIUTF.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/FinalProjectIUTF.ipynb). Sign in and connect a runtime.
 2. Run **Install notebook dependencies**, then run the notebook in order through **Run and validate the analysis**. The loader streams the 1.92 GB public CSV and keeps the eight selected cities in memory. Allow time for the download and analysis.
-3. Run **My Web App**, then **Open the dashboard**. In Colab, the dashboard appears below the cell while the runtime is connected. In local Jupyter, click the localhost link shown by the cell.
+3. Run **My Web App**, then **Open the dashboard**. In Colab, open the new-tab link generated for the active runtime. Keep the notebook open and connected. In local Jupyter, click the localhost link shown by the cell.
 
 The default `DATA_SOURCE = 'google_cloud'` reads the same public CSV as the original notebook. The data load needs internet access and uses no spreadsheet credentials or data upload. [Google Cloud Storage CSV](https://storage.googleapis.com/bucket-quickstart-iutfdataset/all_cities_combined.csv) · [Project1.ipynb](https://github.com/divyakapoor23/IUTF_Viz/blob/main/Project1.ipynb)
 
@@ -43,7 +43,7 @@ For Canvas submission, save the finished notebook to Drive, enable public viewer
 
 City selection applies to all five charts. The hourly comparison uses the day-type filter and keeps both dry and rainy hours visible. The other charts and KPI cards also respond to the day-type and rainfall-intensity filters. Event charts classify events by peak hourly rainfall. Section 7a of the notebook contains additional exploratory plots, including the daily rainfall calendar.
 
-The sage-and-cream interface uses a zero-centered brown-to-blue intensity scale. Heatmap labels switch to light text on dark cells, and the rainfall legend pairs color with dry dots and an unknown-weather hatch.
+The rainfall coverage chart uses light-to-dark blues from Dry through Extreme. Dry dots and an unknown-weather hatch provide additional cues. The flow heatmap uses a separate zero-centered brown-to-blue scale. Its insight ranks gaps in percentage points between the supported rainy and dry medians for the same city and day-type selection.
 
 ## Color-accessibility verification
 
