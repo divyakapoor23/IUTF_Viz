@@ -1,0 +1,9 @@
+city,well_observed_events,events_with_deficit,confirmed_recoveries,not_confirmed_in_window,median_recovery_hours
+paris,56,16,8,8,2.0
+luzern,28,15,8,7,2.0
+hamburg,13,5,4,1,4.5
+toronto,6,1,1,0,3.0
+essen,4,1,0,1,
+innsbruck,3,1,1,0,6.0
+darmstadt,4,1,0,1,
+manchester,4,1,1,0,6.0
