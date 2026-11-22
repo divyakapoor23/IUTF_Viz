@@ -8,6 +8,21 @@ This project describes how hourly rainfall relates to traffic flow in eight citi
 
 This snapshot shows three of the dashboard charts from a saved run. Open the linked notebook in Colab and start the Dash app to explore all five charts and use the interactive filters.
 
+## Public dashboard (independent of Colab)
+
+The standalone Dash app uses the precomputed CSVs in `rainfall_analysis_cloud/`; it does not
+download the original 1.92 GB file or depend on a running notebook. To publish it on Render:
+
+1. Sign in to Render and choose **New → Blueprint**.
+2. Connect this GitHub repository and select the branch to deploy.
+3. Render reads `render.yaml`, installs `requirements.txt`, and starts `app.py`.
+4. Open the `onrender.com` URL Render provides. The `/healthz` endpoint is used for health checks.
+
+The public app is separate from the Colab workflow. Render's free service may spin down after
+inactivity and take time to wake up, but it does not require the Colab runtime to remain active.
+The deployment uses the checked-in summary CSVs; regenerate and commit those files when you
+want to publish updated analysis results.
+
 ## Run the notebook
 
 1. Open [FinalProjectIUTF.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/FinalProjectIUTF.ipynb). Sign in and connect a runtime.
@@ -28,7 +43,7 @@ For Canvas submission, save the finished notebook to Drive, enable public viewer
 
 City selection applies to all five charts. The hourly comparison uses the day-type filter and keeps both dry and rainy hours visible. The other charts and KPI cards also respond to the day-type and rainfall-intensity filters. Event charts classify events by peak hourly rainfall. Section 7a of the notebook contains additional exploratory plots, including the daily rainfall calendar.
 
-The sage-and-cream interface uses a zero-centered brown-to-teal intensity scale with dark heatmap labels for contrast; the rainfall legend uses ordered colors plus a hatch for unknown weather.
+The sage-and-cream interface uses a zero-centered brown-to-blue intensity scale with dark heatmap labels for contrast; the rainfall legend uses ordered colors plus a hatch for unknown weather.
 
 ## Color-accessibility verification
 
@@ -38,10 +53,11 @@ are named in legends and tooltips, unknown weather has a hatch, city lines use d
 markers, and all heatmap values include text labels.
 
 The notebook includes a reproducible approximation of protanopia, deuteranopia, and tritanopia
-for the final dashboard palette. These simulations check pairwise separation after a standard
-color-vision-deficiency transformation and pass only when the minimum simulated color
-distance is at least 35 RGB units. The display also provides labels, hover text, patterns,
-and an ordered legend so a single display feature is never required to understand the data.
+for the categorical rainfall colors; those colors pass the 35 RGB-unit minimum simulated
+separation check. This is not a complete simulation of every visualization: the continuous
+flow heatmap scale and all chart combinations have not been tested. Labels, hover text,
+patterns, and an ordered legend provide non-color cues, but should not be read as a substitute
+for a full visual accessibility review.
 
 ## Data and limitations
 
