@@ -30,6 +30,19 @@ City selection applies to all five charts. The hourly comparison uses the day-ty
 
 The sage-and-cream interface uses a zero-centered brown-to-teal intensity scale with dark heatmap labels for contrast; the rainfall legend uses ordered colors plus a hatch for unknown weather.
 
+## Color-accessibility verification
+
+The rainfall legend uses distinct Okabe-Ito-style hues, and the flow-deviation scale uses a
+blue-to-neutral-to-orange diverging palette. Color is not the only encoding: rainfall classes
+are named in legends and tooltips, unknown weather has a hatch, city lines use distinct
+markers, and all heatmap values include text labels.
+
+The notebook includes a reproducible approximation of protanopia, deuteranopia, and tritanopia
+for the final dashboard palette. These simulations check pairwise separation after a standard
+color-vision-deficiency transformation and pass only when the minimum simulated color
+distance is at least 35 RGB units. The display also provides labels, hover text, patterns,
+and an ordered legend so a single display feature is never required to understand the data.
+
 ## Data and limitations
 
 Hourly precipitation is multiplied by 1,000 to convert metres of accumulation per hour to mm/hour. Rainfall bins and matched dry baselines are calculated from the CSV. Explicitly missing rainfall is shown as unknown. The weather join remains unresolved because the export lacks the original weather timestamps and match status. Some upstream imputed zeros may appear as dry hours.
