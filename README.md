@@ -43,21 +43,13 @@ For Canvas submission, save the finished notebook to Drive, enable public viewer
 
 City selection applies to all five charts. The hourly comparison uses the day-type filter and keeps both dry and rainy hours visible. The other charts and KPI cards also respond to the day-type and rainfall-intensity filters. Event charts classify events by peak hourly rainfall. Section 7a of the notebook contains additional exploratory plots, including the daily rainfall calendar.
 
-The sage-and-cream interface uses a zero-centered brown-to-blue intensity scale with dark heatmap labels for contrast; the rainfall legend uses ordered colors plus a hatch for unknown weather.
+The sage-and-cream interface uses a zero-centered brown-to-blue intensity scale. Heatmap labels switch to light text on dark cells, and the rainfall legend pairs color with dry dots and an unknown-weather hatch.
 
 ## Color-accessibility verification
 
-The rainfall legend uses distinct Okabe-Ito-style hues, and the flow-deviation scale uses a
-blue-to-neutral-to-orange diverging palette. Color is not the only encoding: rainfall classes
-are named in legends and tooltips, unknown weather has a hatch, city lines use distinct
-markers, and all heatmap values include text labels.
+The visual review applied Color Oracle’s official Java simulation engine to screenshots of the running Dash app. It covers all five charts at 1,280 px and 430 px under protanopia, deuteranopia, and tritanopia, plus a filtered view with an Innsbruck event selected. The evidence compares each original capture with all three simulations. [Color Oracle screenshot review](docs/color-oracle-review.pdf) · [Simulator source](https://github.com/nvkelso/color-oracle-java/blob/523772c178c48a3d9e3dead2146eafe0c087f21e/src/ika/colororacle/Simulator.java)
 
-The notebook includes a reproducible approximation of protanopia, deuteranopia, and tritanopia
-for the categorical rainfall colors; those colors pass the 35 RGB-unit minimum simulated
-separation check. This is not a complete simulation of every visualization: the continuous
-flow heatmap scale and all chart combinations have not been tested. Labels, hover text,
-patterns, and an ordered legend provide non-color cues, but should not be read as a substitute
-for a full visual accessibility review.
+The review led to dotted dry bars, striped dry sample-count bars, higher-contrast heatmap labels, and clearer titles and legends on narrow screens. The selected recovery curve uses dashes and diamonds alongside the solid median. Dense storm points can still overlap. The notebook’s separate 35 RGB-unit rule checks pairwise separation of the categorical palette as colors change.
 
 ## Data and limitations
 
