@@ -2,6 +2,12 @@
 
 This project explores how hourly rainfall relates to traffic flow in eight cities and how flow changes after well-observed rain events. The analysis is descriptive; it does not establish that rain caused a traffic change.
 
+## Dashboard preview
+
+[![Static preview of the Plotly dashboard](docs/dashboard-preview.png)](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/Project2.ipynb)
+
+This is a static snapshot; GitHub does not run the dashboard's Plotly interactions. Open the linked notebook in Colab, run it, and start the Dash app to use its filters. The preview reflects a saved analysis run and may not match a newly refreshed dataset.
+
 ## Run the notebook
 
 Open [Project2.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/Project2.ipynb) and run the notebook from top to bottom. The default source is the public Google Cloud Storage CSV, using the same URL documented in [Project1.ipynb](https://github.com/divyakapoor23/IUTF_Viz/blob/main/Project1.ipynb). The loader streams the CSV and retains the selected cities, so no local data-file upload is required.
