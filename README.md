@@ -1,6 +1,6 @@
 # Rainfall and Traffic Flow Across Eight Cities
 
-This project explores how hourly rainfall relates to traffic flow in eight cities and how flow changes after well-observed rain events. The analysis is descriptive; it does not establish that rain caused a traffic change.
+This project describes how hourly rainfall relates to traffic flow in eight cities and how flow varies after well-observed rain events.
 
 ## Dashboard preview
 
@@ -10,9 +10,13 @@ This snapshot shows three of the dashboard charts from a saved run. Open the lin
 
 ## Run the notebook
 
-Open [FinalProjectIUTF.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/FinalProjectIUTF.ipynb) and run the notebook from top to bottom. The default source is the public Google Cloud Storage CSV, using the same URL documented in [Project1.ipynb](https://github.com/divyakapoor23/IUTF_Viz/blob/main/Project1.ipynb). The loader streams the CSV and retains the selected cities, so no local data-file upload is required.
+1. Open [FinalProjectIUTF.ipynb in Google Colab](https://colab.research.google.com/github/divyakapoor23/IUTF_Viz/blob/main/FinalProjectIUTF.ipynb). Sign in and connect a runtime.
+2. Run **Install notebook dependencies**, then run the notebook in order through **Run and validate the analysis**. The loader streams the 1.92 GB public CSV and keeps the eight selected cities in memory. Allow time for the download and analysis.
+3. Run **My Web App**, then **Open the dashboard**. In Colab, the dashboard appears below the cell while the runtime is connected. In local Jupyter, click the localhost link shown by the cell.
 
-The analysis tables are built from the CSV and kept in notebook memory. Run `# @title My Web App` after analysis, then run the next cell to open Dash. Colab provides a proxy link for the active session. Local Jupyter provides a link to [port 8050](http://127.0.0.1:8050/) on the machine running the notebook.
+The default `DATA_SOURCE = 'google_cloud'` reads the same public CSV as the original notebook. The data load needs internet access and uses no spreadsheet credentials or data upload. [Google Cloud Storage CSV](https://storage.googleapis.com/bucket-quickstart-iutfdataset/all_cities_combined.csv) · [Project1.ipynb](https://github.com/divyakapoor23/IUTF_Viz/blob/main/Project1.ipynb)
+
+For Canvas submission, save the finished notebook to Drive, enable public viewer access, and verify the Drive copy's URL while signed out. The [Milestone 2 rubric](https://iu.instructure.com/courses/2426000/assignments/19059131) specifies Google Sheets for the Colab hosting option. This project uses Google Cloud Storage, so rubric compliance depends on an instructor exception.
 
 ## Visualizations
 
@@ -28,7 +32,11 @@ The sage-and-cream interface uses a zero-centered brown-to-teal intensity scale 
 
 ## Data and limitations
 
-The cloud CSV's original weather-match status and raw timestamps are unavailable, so imputed zeros may be mistaken for dry weather and the weather join cannot be fully audited. Cloud-derived comparisons are provisional. Cities have unequal observation periods and seasons, and the analysis does not adjust for holidays or seasonal effects. Recovery depends on available sensor panels and limited follow-up. Findings describe associations, not causal effects.
+Hourly precipitation is multiplied by 1,000 to convert metres of accumulation per hour to mm/hour. Rainfall bins and matched dry baselines are calculated from the CSV. Explicitly missing rainfall is shown as unknown. The weather join remains unresolved because the export lacks the original weather timestamps and match status. Some upstream imputed zeros may appear as dry hours.
+
+Each dry baseline uses at least three valid dry observations for the same city, sensor, hour of day, and day type. An observed dry hour is withheld from its own reference. A city-hour estimate requires at least five supported sensors covering at least half the recorded sensors. Missing or unsupported estimates remain blank in the results table and are labelled in the heatmap. A displayed zero represents a measured deviation at the displayed precision.
+
+Events use a fixed sensor panel and hold out the event window when computing the dry reference. Recovery requires an observed deficit of at least 10% followed by two consecutive dry hours within ±10% of baseline. Unconfirmed events retain a blank recovery time. Findings describe associations across unequal observation periods and seasons.
 
 The optional raw-Parquet mode and full-city audit require separate local source folders; they are not used in the default Colab workflow.
 
